@@ -12,8 +12,10 @@
 		<testng.version>6.14.3</testng.version>
 		<junit.version>4.12</junit.version>
 		<spring.version>4.3.12.RELEASE</spring.version>
+		<aspectj.version>1.8.0</aspectj.version>
 		<rest-assured.version>3.1.0</rest-assured.version>
-		<mysql.version>5.7</mysql.version>
+		<mysql.version>5.1.38</mysql.version>
+		<liquibase.version>3.5.3</liquibase.version>
 	</properties>
 
 
@@ -98,11 +100,76 @@
 			<version>1.7.25</version>
 		</dependency>
 		<!-- spring依赖 -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-core</artifactId> 
+			<version>${hamcrest.version}</version> </dependency> <dependency> <groupId>org.hamcrest</groupId> 
+			<artifactId>hamcrest-library</artifactId> <version>${hamcrest.version}</version> 
+			</dependency> -->
+
 		<!-- mysql依赖 -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>${liquibase.version}</version>
+				<configuration>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+					<propertyFile>src/main/resources/db.properties</propertyFile>
+					<changeLogFile>src/main/resources/master.xml</changeLogFile>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-resourcess</phase>
+						<goals>
+							<goal>update</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -129,7 +196,7 @@
 				<version>2.21.0</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

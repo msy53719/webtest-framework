@@ -30,7 +30,14 @@
 				-%msg%n
 			</Pattern>
 		</layout>
+		<prudent>true</prudent>
 	</appender>
+
+	<logger name="org.springframework" level="INFO" />
+
+	<logger name="org.apache" level="INFO" />
+
+	<logger name="com.webtest.framework" level="DEBUG" />
 
 	<root level="debug">
 		<appender-ref ref="STDOUT" />
