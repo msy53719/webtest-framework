@@ -1,0 +1,5 @@
+version: "3.3"
+services: 
+  stf-server:
+    image: centos:latest
+    container_name: centos

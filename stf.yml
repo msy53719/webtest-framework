@@ -1,0 +1,26 @@
+version: "3.3"
+services: 
+  stf-server:
+    image: openstf/armv7hf-stf:latest
+    container_name: stf-server
+    ports: 
+      - 7100:7100
+    depends_on: 
+      - rethinkdb
+      - adbd  
+      
+  rethinkdb:
+    image: rethinkdb:latest
+    container_name: rethinkdb.db
+    tmpfs:
+      - /rethinkdb/tmp/
+    ports:
+      - 8090:8090
+  
+  adbd:
+    image: sorccu/adb:latest
+    container_name: adbd
+    tmpfs:
+      - /adbd/tmp/
+
+     
