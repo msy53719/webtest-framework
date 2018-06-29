@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  jenkins-master:
+    image: mant/jenkins:latest
+    container_name: jenkins-master
+    volumes: #将本地磁盘挂载到docker
+      - D:\data\jenkins\master_jenkins_home:/var/jenkins_home
+    ports:
+      - 8080:8080
+      - 5000:5000
