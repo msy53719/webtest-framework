@@ -48,6 +48,4 @@
 		<appender-ref ref="rollFILE" />
 	</root>
 
-	<!-- <logger name="com.jd.jr" level="error" append-ref="rollFILE" addtivity="true" 
-		/> -->
 </configuration>
