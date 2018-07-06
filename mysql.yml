@@ -16,6 +16,9 @@ services:
     image: mysql:5.7
     container_name: mysql.db.server
     environment:
+      - LANG=C.UTF-8
+      - character-set-server=utf8mb4 
+      - collation-server=utf8mb4_unicode_ci
       - MYSQL_ROOT_PASSWORD=123456
     tmpfs:
       - /mysql/tmp/
