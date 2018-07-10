@@ -3,6 +3,8 @@ services:
   jenkins-master:
     image: mant/jenkins:latest
     container_name: jenkins-master
+    environment: 
+      - JAVA_OPTS="-Dhudson.model.DirectoryBrowserSupport.CSP= "
     volumes: #将本地磁盘挂载到docker
       - D:\data\jenkins\master_jenkins_home:/var/jenkins_home
     ports:
