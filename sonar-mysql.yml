@@ -1,0 +1,30 @@
+version: "3.3"
+services:    
+  mysql.db.server:
+    image: mysql:5.7
+    container_name: mysql.db.server
+    environment:
+      - LANG=C.UTF-8
+      - MYSQL_ROOT_PASSWORD=sonar
+      - MYSQL_USER=sonar
+      - MYSQL_PASSWORD=sonar
+      - MYSQL_DATABASE=sonar
+    tmpfs:
+      - /mysql/tmp/
+   # volumes:
+  #    - D:\data\musql\data:/var/lib/mysql
+    ports:
+      - 3306:3306
+      
+  sonarqube.server:
+    image: sonarqube:latest
+    container_name: sonarqube.server
+    environment:
+      - SONARQUBE_JDBC_USERNAME=root
+      - SONARQUBE_JDBC_PASSWORD=sonar
+      - ONARQUBE_JDBC_URL=mysql://mysql.db.server:3306/sonar
+    ports:
+      - 9000:9000
+    depends_on: 
+      - mysql.db.server
+      
