@@ -1,0 +1,11 @@
+version: "3.3"
+services: 
+   mountebank-server: 
+      image: node/mountebank
+      container_name: mountebank
+      ports: 
+        - 2525:2525
+        - 8001:8001
+        - 8002:8002
+        - 8003:8003
+      
