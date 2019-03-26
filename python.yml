@@ -1,0 +1,7 @@
+version: "3.3"
+services: 
+  python2-server: 
+    image: python:2.7
+    container_name: python2-server
+ #   volumes:
+ #     - D:\data\python::/usr/src/myapp

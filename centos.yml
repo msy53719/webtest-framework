@@ -1,5 +1,8 @@
 version: "3.3"
 services: 
-  stf-server:
+  centos_server: 
     image: centos:latest
     container_name: centos
+    environment:
+      - USER=root
+      - PASSWORD=123456
