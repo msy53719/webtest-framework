@@ -2,7 +2,6 @@ package com.mosy.test.util;
 
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.testng.Assert;
 
 import io.restassured.path.json.JsonPath;
